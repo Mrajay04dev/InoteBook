@@ -5,6 +5,7 @@ import Home from "./Components/Home";
 import About from "./Components/About";
 import Navbar from "./Components/Navbar";
 import NoteState from "./context/notes/Notestate";
+import Alert from "./Components/Alert";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -13,6 +14,7 @@ function App() {
     <>
       <NoteState>
         <Navbar />
+        <Alert message={"Thats How We Add Alert"} />
         <div className="container-fluid">
           <Routes>
             <Route path="/" element={<Home />} />
