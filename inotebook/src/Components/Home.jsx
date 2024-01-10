@@ -1,5 +1,6 @@
 import React from "react";
 
+import { Notes } from "./Notes";
 function Home() {
   return (
     <div className="container">
@@ -34,7 +35,7 @@ function Home() {
             className="form-check-input my-2"
             id="exampleCheck1"
           />
-          <label className="form-check-label" for="exampleCheck1">
+          <label className="form-check-label" htmlFor="exampleCheck1">
             Check me out
           </label>
         </div>
@@ -42,7 +43,7 @@ function Home() {
           Submit
         </button>
       </form>
-      <h2 className="text-success">Your Notes</h2>
+      <Notes />
     </div>
   );
 }
