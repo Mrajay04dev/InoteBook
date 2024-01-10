@@ -13,7 +13,7 @@ function App() {
     <>
       <NoteState>
         <Navbar />
-        <div>
+        <div className="container-fluid">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
