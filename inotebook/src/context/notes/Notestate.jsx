@@ -4,52 +4,25 @@ import NoteContext from "./NoteContext.jsx";
 const NoteState = (props) => {
   const notesInitial = [
     {
-      _id: "659eaa5adasdfece81d5ea71525a9f",
-      user: "6597fdc735c0cd28as4a9e54d7d",
-      title: "My asdf asdf dote",
-      description: "hello Baadfasd fad note",
+      _id: "659eaa5adece815e71525af4",
+      user: "6597fdc735c0c284a9e54d7f",
+      title: "My asdf asdf dasdfasdfasdfasdfasf sda fdas fote",
+      description: "hello Baadfasd fasdfsdafasdfasdfdsfro Its my second note",
       tag: "Yt",
       date: "2024-01-10T14:31:54.937Z",
       __v: 0,
     },
     {
-      _id: "659eaa5adasdfece8d15e7a1525a9f",
-      user: "6597fdc735c0dc284a9e54d7d",
-      title: "My asdf asdf dote",
-      description: "hello Baadfasd fad note",
-      tag: "Yt",
-      date: "2024-01-10T14:31:54.937Z",
-      __v: 0,
-    },
-    {
-      _id: "659eaa5adecde8sdaf15e71525a9f",
-      user: "6597fdc735cd0c284a9e54d7d",
-      title: "My asdf asdf dote",
-      description: "hello Baadfasd fad note",
-      tag: "Yt",
-      date: "2024-01-10T14:31:54.937Z",
-      __v: 0,
-    },
-    {
-      _id: "659eaa5adasdfece8d15e71525a9f",
-      user: "6597fdc735cd0c284a9e54d7d",
-      title: "My asdf asdf dote",
-      description: "hello Baadfasd fad note",
-      tag: "Yt",
-      date: "2024-01-10T14:31:54.937Z",
-      __v: 0,
-    },
-    {
-      _id: "659eaa5edece8asdf15e7ds1525aa1",
-      user: "6597fdc735cds0c284a9e54d7d",
-      title: "My second Nfdsote updated",
+      _id: "659eaa5edece815e7152dsfa1",
+      user: "6597fdc735c0c284a9e54ddsf",
+      title: "My second Note updated",
       description: "hello Bro Its my second note updated",
       tag: "Yt",
       date: "2024-01-10T14:31:58.438Z",
       __v: 0,
     },
     {
-      _id: "659eaa6adece8asdfdf15e71525aa3",
+      _id: "659eaa6adece815e71525aa3",
       user: "6597fdc735c0c284a9e54d7d",
       title: "My third Note updated",
       description: "hello Bro Its my second note updated",
@@ -58,7 +31,79 @@ const NoteState = (props) => {
       __v: 0,
     },
     {
-      _id: "659eafebdece81asdf5e7fs1525aa8",
+      _id: "659eafebdece815e71525aa8",
+      user: "6597fdc735c0c284a9e54d7d",
+      title: "Legit",
+      description: "This one is Legit",
+      tag: "Legit",
+      date: "2024-01-10T14:55:39.245Z",
+      __v: 0,
+    },
+    {
+      _id: "659eafebdece815e71525aa8",
+      user: "6597fdc735c0c284a9e54d7d",
+      title: "Legit",
+      description: "This one is Legit",
+      tag: "Legit",
+      date: "2024-01-10T14:55:39.245Z",
+      __v: 0,
+    },
+    {
+      _id: "659eafebdece815e71525aa8",
+      user: "6597fdc735c0c284a9e54d7d",
+      title: "Legit",
+      description: "This one is Legit",
+      tag: "Legit",
+      date: "2024-01-10T14:55:39.245Z",
+      __v: 0,
+    },
+    {
+      _id: "659eafebdece815e71525aa8",
+      user: "6597fdc735c0c284a9e54d7d",
+      title: "Legit",
+      description: "This one is Legit",
+      tag: "Legit",
+      date: "2024-01-10T14:55:39.245Z",
+      __v: 0,
+    },
+    {
+      _id: "659eafebdece815e71525aa8",
+      user: "6597fdc735c0c284a9e54d7d",
+      title: "Legit",
+      description: "This one is Legit",
+      tag: "Legit",
+      date: "2024-01-10T14:55:39.245Z",
+      __v: 0,
+    },
+    {
+      _id: "659eafebdece815e71525aa8",
+      user: "6597fdc735c0c284a9e54d7d",
+      title: "Legit",
+      description: "This one is Legit",
+      tag: "Legit",
+      date: "2024-01-10T14:55:39.245Z",
+      __v: 0,
+    },
+    {
+      _id: "659eafebdece815e71525aa8",
+      user: "6597fdc735c0c284a9e54d7d",
+      title: "Legit",
+      description: "This one is Legit",
+      tag: "Legit",
+      date: "2024-01-10T14:55:39.245Z",
+      __v: 0,
+    },
+    {
+      _id: "659eafebdece815e71525aa8",
+      user: "6597fdc735c0c284a9e54d7d",
+      title: "Legit",
+      description: "This one is Legit",
+      tag: "Legit",
+      date: "2024-01-10T14:55:39.245Z",
+      __v: 0,
+    },
+    {
+      _id: "659eafebdece815e71525aa8",
       user: "6597fdc735c0c284a9e54d7d",
       title: "Legit",
       description: "This one is Legit",
@@ -74,22 +119,32 @@ const NoteState = (props) => {
     //Todo : Api Call
     console.log("Adding The Note");
     let note = {
-      _id: "659eafebdece815easdfd71525aa8",
-      user: "6597fdc735c0c2d84a9e54d73",
-      title: title,
-      description: description,
-      tag: tag,
-      date: "2024-01-10T14:55:39.245Z",
+      _id: "659eaa5adece815e71525ar4",
+      user: "6597fdc735c0c284a9e54daer",
+      title: "My asdf asdf dasdfasdfasdfasdfasf sda fdas fote",
+      description: "hello Baadfasd fasdfsdafasdfasdfdsfro Its my second note",
+      tag: "Yt",
+      date: "2024-01-10T14:31:54.937Z",
       __v: 0,
     };
+
     setNotes(notes.concat(note));
   };
 
   // Delete Note
-  const deleteNote = (id) => {};
+  //Todo : Api Call
+  const deleteNote = (id) => {
+    console.log("deleting the note with id" + id);
+    const newNotes = notes.filter((note) => note._id !== id);
+
+    setNotes(newNotes);
+  };
 
   // Edit A Note
-  const editNote = (id) => {};
+  const editNote = (id, title, description, tag) => {};
+
+
+  
   return (
     <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote }}>
       {props.children}
