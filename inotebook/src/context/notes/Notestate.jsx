@@ -1,122 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NoteContext from "./NoteContext.jsx";
+import { json } from "react-router-dom";
 
 const NoteState = (props) => {
-  const notesInitial = [
-    {
-      _id: "659eaa5adece815e71525af4",
-      user: "6597fdc735c0c284a9e54d7f",
-      title: "My asdf asdf dasdfasdfasdfasdfasf sda fdas fote",
-      description: "hello Baadfasd fasdfsdafasdfasdfdsfro Its my second note",
-      tag: "Yt",
-      date: "2024-01-10T14:31:54.937Z",
-      __v: 0,
-    },
-    {
-      _id: "659eaa5edece815e7152dsfa1",
-      user: "6597fdc735c0c284a9e54ddsf",
-      title: "My second Note updated",
-      description: "hello Bro Its my second note updated",
-      tag: "Yt",
-      date: "2024-01-10T14:31:58.438Z",
-      __v: 0,
-    },
-    {
-      _id: "659eaa6adece815e71525aa3",
-      user: "6597fdc735c0c284a9e54d7d",
-      title: "My third Note updated",
-      description: "hello Bro Its my second note updated",
-      tag: "Yt",
-      date: "2024-01-10T14:32:10.830Z",
-      __v: 0,
-    },
-    {
-      _id: "659eafebdece815e71525aa8",
-      user: "6597fdc735c0c284a9e54d7d",
-      title: "Legit",
-      description: "This one is Legit",
-      tag: "Legit",
-      date: "2024-01-10T14:55:39.245Z",
-      __v: 0,
-    },
-    {
-      _id: "659eafebdece815e71525aa8",
-      user: "6597fdc735c0c284a9e54d7d",
-      title: "Legit",
-      description: "This one is Legit",
-      tag: "Legit",
-      date: "2024-01-10T14:55:39.245Z",
-      __v: 0,
-    },
-    {
-      _id: "659eafebdece815e71525aa8",
-      user: "6597fdc735c0c284a9e54d7d",
-      title: "Legit",
-      description: "This one is Legit",
-      tag: "Legit",
-      date: "2024-01-10T14:55:39.245Z",
-      __v: 0,
-    },
-    {
-      _id: "659eafebdece815e71525aa8",
-      user: "6597fdc735c0c284a9e54d7d",
-      title: "Legit",
-      description: "This one is Legit",
-      tag: "Legit",
-      date: "2024-01-10T14:55:39.245Z",
-      __v: 0,
-    },
-    {
-      _id: "659eafebdece815e71525aa8",
-      user: "6597fdc735c0c284a9e54d7d",
-      title: "Legit",
-      description: "This one is Legit",
-      tag: "Legit",
-      date: "2024-01-10T14:55:39.245Z",
-      __v: 0,
-    },
-    {
-      _id: "659eafebdece815e71525aa8",
-      user: "6597fdc735c0c284a9e54d7d",
-      title: "Legit",
-      description: "This one is Legit",
-      tag: "Legit",
-      date: "2024-01-10T14:55:39.245Z",
-      __v: 0,
-    },
-    {
-      _id: "659eafebdece815e71525aa8",
-      user: "6597fdc735c0c284a9e54d7d",
-      title: "Legit",
-      description: "This one is Legit",
-      tag: "Legit",
-      date: "2024-01-10T14:55:39.245Z",
-      __v: 0,
-    },
-    {
-      _id: "659eafebdece815e71525aa8",
-      user: "6597fdc735c0c284a9e54d7d",
-      title: "Legit",
-      description: "This one is Legit",
-      tag: "Legit",
-      date: "2024-01-10T14:55:39.245Z",
-      __v: 0,
-    },
-    {
-      _id: "659eafebdece815e71525aa8",
-      user: "6597fdc735c0c284a9e54d7d",
-      title: "Legit",
-      description: "This one is Legit",
-      tag: "Legit",
-      date: "2024-01-10T14:55:39.245Z",
-      __v: 0,
-    },
-  ];
+  const host = "http://localhost:8080";
+  const notesInitial = [];
   const [notes, setNotes] = useState(notesInitial);
 
+  // Get all Note
+  const getNotes = async () => {
+    // Api Call
+    const response = await fetch(`${host}/api/notes/fetchalluser`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token":
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjU5N2ZkYzczNWMwYzI4NGE5ZTU0ZDdkIn0sImlhdCI6MTcwNDUyMTgwNH0.jzy5YTlCOgoc_sCCKypVILtDFSjhNp0TcHqMUyeiyBc",
+      },
+    });
+    const json = await response.json();
+    console.log(json);
+    setNotes(json);
+  };
+
   // Add Note
-  const addNote = (title, description, tag) => {
+  const addNote = async (title, description, tag) => {
     //Todo : Api Call
+    const response = await fetch(`${host}/api/notes/addnote/${id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token":
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjU5N2ZkYzczNWMwYzI4NGE5ZTU0ZDdkIn0sImlhdCI6MTcwNDUyMTgwNH0.jzy5YTlCOgoc_sCCKypVILtDFSjhNp0TcHqMUyeiyBc",
+      },
+      body: JSON.stringify({ title, description, tag }),
+    });
+
+    const url = "api/notes/addnote";
     console.log("Adding The Note");
     let note = {
       _id: "659eaa5adece815e71525ar4",
@@ -141,12 +61,34 @@ const NoteState = (props) => {
   };
 
   // Edit A Note
-  const editNote = (id, title, description, tag) => {};
+  const editNote = async (id, title, description, tag) => {
+    // API CALL
 
+    const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token":
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjU5N2ZkYzczNWMwYzI4NGE5ZTU0ZDdkIn0sImlhdCI6MTcwNDUyMTgwNH0.jzy5YTlCOgoc_sCCKypVILtDFSjhNp0TcHqMUyeiyBc",
+      },
+      body: JSON.stringify({ title, description, tag }),
+    });
+    const json = response.json();
 
-  
+    // Logic to delete Note in client
+    for (let i = 0; i < notes.length; i++) {
+      const element = notes[i];
+      if (element._id === id) {
+        element.title = title;
+        element.description = description;
+        element.tag = tag;
+      }
+    }
+  };
   return (
-    <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote }}>
+    <NoteContext.Provider
+      value={{ notes, addNote, deleteNote, editNote, getNotes }}
+    >
       {props.children}
     </NoteContext.Provider>
   );
