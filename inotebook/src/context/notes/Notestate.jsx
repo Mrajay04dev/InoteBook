@@ -25,8 +25,8 @@ const NoteState = (props) => {
 
   // Add Note
   const addNote = async (title, description, tag) => {
-    //Todo : Api Call
-    const response = await fetch(`${host}/api/notes/addnote/${id}`, {
+    // Api Call
+    const response = await fetch(`${host}/api/notes/addnote`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -36,14 +36,13 @@ const NoteState = (props) => {
       body: JSON.stringify({ title, description, tag }),
     });
 
-    const url = "api/notes/addnote";
     console.log("Adding The Note");
     let note = {
       _id: "659eaa5adece815e71525ar4",
       user: "6597fdc735c0c284a9e54daer",
-      title: "My asdf asdf dasdfasdfasdfasdfasf sda fdas fote",
-      description: "hello Baadfasd fasdfsdafasdfasdfdsfro Its my second note",
-      tag: "Yt",
+      title: title,
+      description: description,
+      tag: tag,
       date: "2024-01-10T14:31:54.937Z",
       __v: 0,
     };
@@ -52,12 +51,22 @@ const NoteState = (props) => {
   };
 
   // Delete Note
-  //Todo : Api Call
-  const deleteNote = (id) => {
-    console.log("deleting the note with id" + id);
-    const newNotes = notes.filter((note) => note._id !== id);
 
+  const deleteNote = async (id) => {
+    // Api Call
+
+    const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token":
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjU5N2ZkYzczNWMwYzI4NGE5ZTU0ZDdkIn0sImlhdCI6MTcwNDUyMTgwNH0.jzy5YTlCOgoc_sCCKypVILtDFSjhNp0TcHqMUyeiyBc",
+      },
+    });
+    const newNotes = notes.filter((note) => note._id !== id);
     setNotes(newNotes);
+    const json = response.json();
+    console.log("deleting the note with id" + id);
   };
 
   // Edit A Note
@@ -65,7 +74,7 @@ const NoteState = (props) => {
     // API CALL
 
     const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
-      method: "PUT",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         "auth-token":

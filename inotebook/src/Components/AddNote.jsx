@@ -45,13 +45,25 @@ const AddNote = () => {
               onChange={onChange}
             />
           </div>
+          <div className="form-group my-3">
+            <label htmlFor="tag">Tag</label>
+            <input
+              type="text"
+              className="form-control my-2"
+              id="tag"
+              name="tag"
+              placeholder="Enter Your Tag"
+              value={note.tag}
+              onChange={onChange}
+            />
+          </div>
 
           <button
             type="submit"
             className="btn btn-primary my-1"
             onClick={handleClick}
           >
-            Submit
+            Add Note
           </button>
         </form>
       </div>
