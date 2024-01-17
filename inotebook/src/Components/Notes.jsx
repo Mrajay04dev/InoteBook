@@ -30,9 +30,7 @@ export const Notes = () => {
   const handleClick = (e) => {
     editNote(note.id, note.etitle, note.edescription, note.etag);
     refClose.current.click();
-
     e.preventDefault();
-    // addNote(note.title, note.description, note.tag);
   };
   const onChange = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value });
@@ -79,7 +77,7 @@ export const Notes = () => {
             <div className="modal-body">
               <form className="fw-bolder  ">
                 <div className="form-group my-3 ">
-                  <label htmlFor="etitle"> Add a Title</label>
+                  <label htmlFor="etitle "> Add a Title</label>
                   <input
                     type="text"
                     className="form-control my-2"
@@ -89,6 +87,8 @@ export const Notes = () => {
                     placeholder="Enter Title Of Your Note"
                     value={note.etitle}
                     onChange={onChange}
+                    minLength={5}
+                    required
                   />
                 </div>
                 <div className="form-group my-3">
@@ -101,6 +101,8 @@ export const Notes = () => {
                     placeholder="Enter Your Description"
                     value={note.edescription}
                     onChange={onChange}
+                    minLength={5}
+                    required
                   />
                 </div>
                 <div className="form-group my-3">
@@ -127,6 +129,9 @@ export const Notes = () => {
                 Close
               </button>
               <button
+                disabled={
+                  note.etitle.length < 5 || note.edescription.length < 5
+                }
                 onClick={handleClick}
                 type="button"
                 className="btn btn-primary"
@@ -139,6 +144,9 @@ export const Notes = () => {
       </div>
       <div className="container mt-3">
         <h2 className="text-success">Your Notes</h2>
+        <div className="container fw-bolder">
+          {notes.length === 0 && "No Notes to Display"}
+        </div>
         <div className="row">
           {notes.map((note) => (
             <Noteitem key={note._id} updateNote={updateNote} note={note} />

@@ -19,7 +19,7 @@ const NoteState = (props) => {
         },
       });
       const json = await response.json();
-      console.log(json);
+
       setNotes(json);
     } catch (error) {
       console.error("Error fetching notes:", error.message);
@@ -40,20 +40,9 @@ const NoteState = (props) => {
         body: JSON.stringify({ title, description, tag }),
       });
       const json = await response.json();
-      console.log(json);
 
-      console.log("Adding The Note");
-      const newNote = {
-        // _id: "659eaa5adece815e71525ar4",
-        user: "6597fdc735c0c284a9e54daer",
-        title: title,
-        description: description,
-        tag: tag,
-        date: "2024-01-10T14:31:54.937Z",
-        __v: 0,
-      };
-
-      setNotes((prevNotes) => [...prevNotes, newNote]);
+      const note = json;
+      setNotes((prevNotes) => [...prevNotes, note]);
     } catch (error) {
       console.error("Error adding note:", error.message);
     }
@@ -74,8 +63,6 @@ const NoteState = (props) => {
 
       const newNotes = notes.filter((note) => note._id !== id);
       setNotes(newNotes);
-
-      console.log("Deleting the note with id" + id);
     } catch (error) {
       console.error("Error deleting note:", error.message);
     }
@@ -96,7 +83,6 @@ const NoteState = (props) => {
       });
 
       const json = await response.json();
-      console.log(json);
 
       // Create a deep copy of the notes array to avoid potential side effects
       let newNotes = JSON.parse(JSON.stringify(notes));
@@ -112,8 +98,6 @@ const NoteState = (props) => {
         }
       }
       setNotes(newNotes);
-
-      console.log("Edited note with id: " + id);
     } catch (error) {
       console.error("Error editing note:", error.message);
     }
