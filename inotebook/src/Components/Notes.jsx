@@ -1,11 +1,21 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useContext } from "react";
 import NoteContext from "../context/notes/NoteContext";
 import Noteitem from "./Noteitem";
 import AddNote from "./Addnote";
+import { useNavigate } from "react-router-dom";
 
-export const Notes = () => {
-  const { notes, editNote } = useContext(NoteContext);
+export const Notes = (props) => {
+  const { notes, editNote, getNotes } = useContext(NoteContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      getNotes();
+    } else {
+      navigate("/login");
+    } //eslint-disable-next-line
+  }, []);
 
   const [note, setNote] = useState({
     id: "",
@@ -30,15 +40,17 @@ export const Notes = () => {
   const handleClick = (e) => {
     editNote(note.id, note.etitle, note.edescription, note.etag);
     refClose.current.click();
+    props.showAlert("Updated Successfully", "success");
     e.preventDefault();
   };
+
   const onChange = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value });
   };
 
   return (
     <>
-      <AddNote />
+      <AddNote showAlert={props.showAlert} />
       <button
         ref={ref}
         type="button"
@@ -144,13 +156,21 @@ export const Notes = () => {
       </div>
       <div className="container mt-3">
         <h2 className="text-success">Your Notes</h2>
-        <div className="container fw-bolder">
-          {notes.length === 0 && "No Notes to Display"}
-        </div>
-        <div className="row">
-          {notes.map((note) => (
-            <Noteitem key={note._id} updateNote={updateNote} note={note} />
-          ))}
+        <div className="fw-bolder">
+          {notes.length === 0 ? (
+            <p>No notes available. Please add a new note.</p>
+          ) : (
+            <div className="row">
+              {notes.map((note) => (
+                <Noteitem
+                  key={note._id}
+                  updateNote={updateNote}
+                  showAlert={props.showAlert}
+                  note={note}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </>

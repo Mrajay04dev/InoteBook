@@ -19,10 +19,11 @@ router.post(
     body("password").isLength({ min: 6 }),
   ],
   async (req, res) => {
+    let success = false;
     // Validation
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({ success, errors: errors.array() });
     }
 
     // Check if user with the email already exists
@@ -30,9 +31,10 @@ router.post(
       let newUser = await User.findOne({ email: req.body.email });
 
       if (newUser) {
-        return res
-          .status(400)
-          .json({ error: "Sorry, a user with this email already exists" });
+        return res.status(400).json({
+          success,
+          error: "Sorry, a user with this email already exists",
+        });
       }
 
       // Hash the password and create a new user
@@ -52,7 +54,8 @@ router.post(
         },
       };
       const authToken = jwt.sign(data, JWT_SECRET);
-      res.json({ authToken });
+      success = true;
+      res.json({ success, authToken });
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Some Error Occurred");
@@ -68,6 +71,7 @@ router.post(
     body("password", "Password cannot be blank").exists(),
   ],
   async (req, res) => {
+    success = false;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -78,12 +82,18 @@ router.post(
       let newUser = await User.findOne({ email });
 
       if (!newUser) {
-        return res.status(400).json({ error: "Enter Correct Credentials" });
+        success = false;
+        return res
+          .status(400)
+          .json({ success, error: "Enter Correct Credentials" });
       }
 
       const passwordCompare = await bcrypt.compare(password, newUser.password);
       if (!passwordCompare) {
-        return res.status(400).json({ error: "Enter Correct Credentials" });
+        success = false;
+        return res
+          .status(400)
+          .json({ success, error: "Enter Correct Credentials" });
       }
 
       const data = {
@@ -92,7 +102,8 @@ router.post(
         },
       };
       const authToken = jwt.sign(data, JWT_SECRET);
-      res.json({ authToken });
+      success = true;
+      res.json({ success, authToken });
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Internal Server Error");
